@@ -4,7 +4,7 @@ import (
 	"archive/zip"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path"
@@ -34,7 +34,7 @@ func (c *Client) FetchCWE() (cwes WeaknessCatalog, err error) {
 		}
 		defer f.Close()
 
-		raw, _ := ioutil.ReadAll(resp.Body)
+		raw, _ := io.ReadAll(resp.Body)
 		_, _ = f.Write(raw)
 	}
 
@@ -49,7 +49,7 @@ func (c *Client) FetchCWE() (cwes WeaknessCatalog, err error) {
 			return cwes, err
 		}
 
-		b, err := ioutil.ReadAll(src)
+		b, err := io.ReadAll(src)
 		if err != nil {
 			return WeaknessCatalog{}, fmt.Errorf("error reading file %s: %v", p, err)
 		}

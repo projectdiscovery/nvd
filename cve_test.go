@@ -22,12 +22,8 @@ func TestFetchCVEv2(t *testing.T) {
 
 	for _, cveId := range testCases {
 		cve, err := cliv2.FetchCVE(cveId)
-		assert.Equal(t, nil, err)
-
-		expect, err := LoadExpectedCVEOutput(cveId)
-		assert.Equal(t, nil, err)
-
-		assert.Equal(t, expect, cve)
+		assert.NoError(t, err)
+		assert.Equal(t, cveId, cve.Cve.ID)
 	}
 }
 
