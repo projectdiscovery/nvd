@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
@@ -111,7 +110,7 @@ func (c *Client) pathToFeed(year string) string {
 
 func (c *Client) loadFeed(year string) ([]byte, error) {
 	p := c.pathToFeed(year)
-	raw, err := ioutil.ReadFile(p)
+	raw, err := os.ReadFile(p)
 	if err != nil {
 		return nil, fmt.Errorf("error reading local feed file %s: %v", p, err)
 	}

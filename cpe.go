@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path"
 	"strings"
@@ -111,7 +110,7 @@ func (c *Client) fetchCPEMatches() (CPEMatchFeed, error) {
 		}
 	}
 
-	raw, err := ioutil.ReadFile(p)
+	raw, err := os.ReadFile(p)
 	if err != nil {
 		return CPEMatchFeed{}, fmt.Errorf("error reading local feed file %s: %v", p, err)
 	}

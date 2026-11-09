@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -84,7 +83,6 @@ func TestClient_FetchCPEMatches(t *testing.T) {
 
 	// FIXME temporary testing with random 100 picks from cpeFeed
 	// for visual checking only at the moment
-	rand.Seed(time.Now().UnixNano())
 	rand.Shuffle(len(cpes), func(i, j int) { cpes[i], cpes[j] = cpes[j], cpes[i] })
 	cpeRand := cpes[:100]
 

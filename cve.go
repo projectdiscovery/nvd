@@ -3,7 +3,7 @@ package nvd
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -26,7 +26,7 @@ func (c *ClientV2) FetchCVE(cveID string) (Vulnerability, error) {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return Vulnerability{}, err
 	}
